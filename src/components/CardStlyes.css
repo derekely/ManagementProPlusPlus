@@ -1,7 +1,7 @@
 .card {
     width: 18rem;
     height: 20rem;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0px 0px 8px #ccc;
     color: #253b56;
     margin: 12px 0px;
@@ -9,6 +9,13 @@
 
 .cardTitle{
     text-align: center;
+    margin-bottom: 2rem;
 }
 
+.cardDescription {
+    margin-bottom: 2rem;
+}
 
+.cardDate {
+   text-align-last: right;
+}
