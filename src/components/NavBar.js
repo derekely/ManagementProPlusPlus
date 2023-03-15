@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./NavBarStyles.css";
+import Login from "../Login";
 
 class NavBar extends Component {
 
@@ -40,9 +41,12 @@ class NavBar extends Component {
                         </li>
                         {/* add link to login page in href */}
                         <li className="nav-item">
-                            <a className="nav-link active" href="index.html">
+                            <button className="loginButton" onClick={Login}>
                                 Login
-                            </a>
+                            </button>
+                            {/* <a className="nav-link active" href="index.html">
+                                login()
+                            </a> */}
                         </li> 
                     </ul>
                     {/* Optional search menu */}

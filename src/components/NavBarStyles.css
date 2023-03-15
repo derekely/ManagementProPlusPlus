@@ -23,7 +23,8 @@ nav {
     position: relative;
 }
 
-#navbar li a {
+#navbar li a,
+#navbar li button {
     text-decoration: none;
     font-size: 1.3rem;
     font-weight: 600;
@@ -31,13 +32,17 @@ nav {
 }
 
 #navbar li a:hover,
-#navbar li a:active {
+#navbar li a:active,
+#navbar li button:hover,
+#navbar li button:active {
     color: blue;
     transition: 0.3s ease-in-out;
 }
 
 #navbar li a:hover::after,
-#navbar li a:active:after {
+#navbar li a:active:after,
+#navbar li button:hover:after,
+#navbar li button:active::after {
     content: "";
     width: 60%;
     height: 2px;
@@ -45,4 +50,9 @@ nav {
     position: absolute;
     bottom:  -4px;
     left: 20px;
+}
+
+#navbar li button {
+    background: transparent;
+    border: transparent;
 }
