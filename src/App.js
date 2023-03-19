@@ -1,5 +1,6 @@
 import React from "react";
 // import  ReactDOM from "react";
+import  AddCard  from "./components/AddCard";
 import Card from './components/Card';
 import NavBar  from "./components/NavBar";
 
@@ -8,7 +9,9 @@ function App() {
     <>
     <NavBar />
     <Card /> 
-    <button>New</button>
+    <button onClick={() =>
+      <AddCard />
+    }>+</button>
     </>
   )
 }
