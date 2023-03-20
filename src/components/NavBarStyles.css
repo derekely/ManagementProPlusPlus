@@ -1,36 +1,8 @@
 * {
     margin: 0;
-  }
+  } 
 
-nav {
-    /* display: flex; */
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgba(34, 52, 93, 0.42);
-    padding: 20px 80px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-}
-
-#navbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#navbar li {
-    list-style: none;
-    padding: 0 20px;
-    position: relative;
-}
-
-#navbar li a {
-    text-decoration: none;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: white;
-}
-
-#navbar li a:hover,
+/*#navbar li a:hover,
 #navbar li a:active {
     color: blue;
     transition: 0.3s ease-in-out;
@@ -45,4 +17,53 @@ nav {
     position: absolute;
     bottom:  -4px;
     left: 20px;
+}*/
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f2f2f2;
+}
+
+.navbar_logo img {
+    width: 100px;
+    height: 50px;
+}
+
+.navbar_links {
+    display: flex;
+    list-style: none;
+    margin: 0; 
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+}
+
+a:hover {
+    color: #007bff;
+    transition: 0.3s ease-in-out;
+}
+
+.navbar_links li:not(:last-child) {
+    margin-right: 2rem;
+}
+
+.navbar_account img {
+    width: 50;
+    height: 50px;
 }
