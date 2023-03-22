@@ -1,0 +1,12 @@
+.card {
+    width: 18rem;
+    height: 20rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px #ccc;
+    color: #253b56;
+    margin: 12px 0px;
+}
+
+.cardTitle{
+    text-align: center;
+}
