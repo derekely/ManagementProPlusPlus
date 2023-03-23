@@ -16,11 +16,21 @@
     padding: 32px;
     width: 100%;
     max-width: 640px;
-    background-color: #FFF;
+    background-color: #caf0f8;
 }
 
 .popup-inner .close-btn {
     position: absolute;
     top: 16px;
     right: 16px;
+}
+
+.add-to-task-btn {
+    position: absolute;
+    background-color: #00b4d8;
+    color: whitesmoke;
+}
+
+.add-to-task-btn:hover {
+    background-color: #679ab6;
 }

@@ -7,8 +7,6 @@ import NavBar  from "./components/NavBar";
 function App() {
   const [buttonPopup, setButtonPopup] = useState(false)
   
-  
-  
   return(
     <>
     <NavBar />

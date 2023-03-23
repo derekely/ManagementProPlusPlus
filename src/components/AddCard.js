@@ -7,18 +7,18 @@ export default function AddCard(props){
     return(props.trigger) ? (
         <div className="popup">
             <div className="popup-inner">
-                <label>
+                <label className="project-Title">
                     Project Title <input name="cardTitle" />
                 </label>
-                <hr />
-                <label>
+        
+                <label className="project-description">
                     Project Description <input name="cardDescription" />
                 </label>
-                <hr />
-                <label>
+                
+                <label className="project-Date">
                     Project Start Date <input name="cardDate" />
                 </label>
-                <hr />
+                
                 <button className="close-btn" onClick={()=> props.setTrigger(false)}>x</button>
                 <button className="add-to-task-btn">Add Project to tasks!</button>
                 { props.children }
