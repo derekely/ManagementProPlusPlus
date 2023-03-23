@@ -10,7 +10,7 @@ function App() {
     <>
     <NavBar />
     <Card /> 
-    <button onClick={() => setButtonPopup(true)}>+</button>
+    <button onClick={() => setButtonPopup(true)} className="newCardBtn">+</button>
     <AddCard trigger={buttonPopup} setTrigger={setButtonPopup}></AddCard>
     </>
   )
