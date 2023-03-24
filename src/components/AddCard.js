@@ -19,18 +19,18 @@ export default function AddCard(props){
                     <h1>CREATE YOUR OWN PROJECT!</h1>
                     <div id="top-row">
                         <label className="project-Title">
-                            Project Title <input placeholder="Project Title" name="cardTitle" />
+                            Project Title <input placeholder="My Project" name="cardTitle" />
                         </label>
                         
                         <label className="project-Date">
-                            Project Due Date <input placeholder="Due Date" name="cardDate" />
+                            Project Due Date <input type="date" name="cardDate" />
                         </label>
                     </div>
                     <div id="middle-row">
                         <label htmlFor="project-description">
                             Project Description
                         </label>
-                        <textarea id="project-description" placeholder="What are the details of your project...?"></textarea>
+                        <textarea id="project-description" placeholder='"It"s the little details that are vital. Little things make big things happen."   -John Wooden, Basketball Coach"'></textarea>
                     </div>
                 <div id="bottom-row">
                     <button className="add-to-task-btn" onClick={handleAddTaskClick}>Add Project to tasks!</button>
