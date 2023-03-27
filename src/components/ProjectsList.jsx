@@ -10,7 +10,7 @@ function ProjectCard(props) {
 
   return (
     <div className="project-card relative flex justify-between items-end">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{name}</button>
+      <button class="hover:text-blue-700 font-bold py-2 px-4 rounded">{name}</button>
       <p className="absolute bottom-0 right-5">ID: {id}</p>
       <p className="absolute bottom-0 left-20">{description}</p>
       <button className="self-start" onClick={handleDelete}>
