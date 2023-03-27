@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import projectsData from '../data.json';
 
 function ProjectCard(props) {
-  const { name, id } = props.project;
+  const { name, id, description } = props.project;
 
   const handleDelete = () => {
     props.onDelete(props.project);
@@ -10,8 +10,9 @@ function ProjectCard(props) {
 
   return (
     <div className="project-card relative flex justify-between items-end">
-      <h2>{name}</h2>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{name}</button>
       <p className="absolute bottom-0 right-5">ID: {id}</p>
+      <p className="absolute bottom-0 left-20">{description}</p>
       <button className="self-start" onClick={handleDelete}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +38,7 @@ function ProjectCard(props) {
 
 function ProjectsList() {
   const [projects, setProjects] = useState(projectsData.projects);
-  const [newProject, setNewProject] = useState({ name: '', id: '', tasks: [] });
+  const [newProject, setNewProject] = useState({ name: '', id: '', description:"", tasks: [] });
 
   const handleInputChange = (event) => {
     setNewProject({
@@ -65,6 +66,7 @@ function ProjectsList() {
     setNewProject({
       name: "",
       id: "",
+      description: "",
       tasks: [],
     });
   };
@@ -80,7 +82,7 @@ function ProjectsList() {
       <form className="mt-5 mb-5 mx-auto max-w-xs" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="name">
-            Name:
+            Project Name:
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -93,26 +95,40 @@ function ProjectsList() {
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="id">
-            ID:
+            Project ID:
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="id"
-            type="text"
+            type="number"
             name="id"
             value={newProject.id}
             onChange={handleInputChange}
           />
         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2" htmlFor="id">
+            Project Description:
+          </label>
+          <textarea
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="description"
+            type="text"
+            name="description"
+            value={newProject.description}
+            onChange={handleInputChange}
+          />
+        </div>
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           type="submit"
         >
           Add Project
         </button>
+        
       </form>
       {projects.map((project) => (
-        <ProjectCard key={project.id} project={project} onDelete={handleDelete} />
+        <ProjectCard key={project.id} project={project} description={project.description} onDelete={handleDelete} />
       ))}
     </div>
   );
