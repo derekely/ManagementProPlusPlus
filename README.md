@@ -17,12 +17,12 @@
 
 # Collaborators
 
-Derek Ely
-Brandon Schliep
-Ara Araujo
-Jesus Del Barrio
-Jarvis Kwong
-Wade Withers 
+Derek Ely, 
+Brandon Schliep, 
+Ara Araujo, 
+Jesus Del Barrio, 
+Jarvis Kwong, 
+Wade Withers.
 
 # Useful Websites
 * [Firebase Documentation](https://www.google.com/search?q=firebase+documentation&rlz=1C1RXQR_enUS1033US1036&oq=firebase+document&aqs=chrome.0.0i131i433i512j69i57j0i20i263i512j0i512l7.2264j0j4&sourceid=chrome&ie=UTF-8&safe=strict)
