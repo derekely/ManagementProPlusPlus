@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import {AiFillEyeInvisible,AiFillEye} from "react-icons/ai"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from '../firebase';
 
+
 export default function SignUp() {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState(
         { name: "",
@@ -27,9 +29,11 @@ export default function SignUp() {
         const userCredential = await createUserWithEmailAndPassword(auth,email,password)
         const user = userCredential.user
         console.log(user)
+        navigate('/')
       } catch (error) {
         console.log(error)
       }
+      
     }
   return (
     <section>

@@ -1,13 +1,12 @@
 # Overview
 
-The purpose of this app is to demonstrated the use of the react-router-dom package in React that allows us to create a navigation bar that updates the virtual dom without reloading. It 
-also uses Firebase v9 to create accounts for the website. 
+{Important!  Do not say in this section that this is college assignment.}
 
-[Software Demo Video](https://youtu.be/eRNGTqWqTLY)
+{Provide a description of your team project.  Describe how to use the software.}
 
-# Web Pages
+{If this is an online class, then provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running and a walkthrough of the code.}
 
-There are many different pages in this project. The ones that are completely developed are the ones related to accounts and Firebase itself. 
+[Software Demo Video](http://youtube.link.goes.here)
 
 # Development Environment
 * Node.js
@@ -15,11 +14,21 @@ There are many different pages in this project. The ones that are completely dev
 * Javascript
 * Tailwind CSS
 * HTML
+
+# Collaborators
+
+Derek Ely, 
+Brandon Schliep, 
+Ara Araujo, 
+Jesus Del Barrio, 
+Jarvis Kwong, 
+Wade Withers.
+
 # Useful Websites
 * [Firebase Documentation](https://www.google.com/search?q=firebase+documentation&rlz=1C1RXQR_enUS1033US1036&oq=firebase+document&aqs=chrome.0.0i131i433i512j69i57j0i20i263i512j0i512l7.2264j0j4&sourceid=chrome&ie=UTF-8&safe=strict)
 * [Web Dev](https://www.youtube.com/watch?v=Ul3y1LXxzdU)
 
 # Future Work
-* Work on the different pages
-* Allow posts
+* Improve the different pages
+* Funcionality that allows to connect projects to multiple user accounts
 * Make it more interactive
