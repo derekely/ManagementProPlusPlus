@@ -5,9 +5,9 @@ export default function Header() {
     const navigate = useNavigate();
     function pathMatchRoute(route) {
         if (route === location.pathname) {
-          return "text-black border-b-orange-400";
+          return "text-black border-b-blue-400";
         } else {
-          return "text-gray-500 border-b-transparent";
+          return "text-gray-600 border-b-transparent";
         }
       }
       
@@ -16,7 +16,8 @@ export default function Header() {
         <header className='flex justify-between items-center
         px-4 max-w-6xl mx-auto h-16'>
             <div>
-                <img onClick={()=>navigate("/")} className='h-12 cursor-pointer' src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Firebase_Logo.svg/2560px-Firebase_Logo.svg.png" alt="logo" />
+                <img onClick={()=>navigate("/")} className='h-12 cursor-pointer' 
+                src={process.env.PUBLIC_URL + '/logo.png'} alt="logo" />
             </div>
             <div>
                 <ul className='flex space-x-10'>
@@ -27,10 +28,10 @@ export default function Header() {
   Home
 </li>
 <li
-  onClick={() => navigate("/offers")}
-  className={`cursor-pointer py-3 text-sm font-semibold  border-b-[3px] ${pathMatchRoute("/offers")}`}
+  onClick={() => navigate("/tasks")}
+  className={`cursor-pointer py-3 text-sm font-semibold  border-b-[3px] ${pathMatchRoute("/tasks")}`}
 >
-  Offers
+  Tasks
 </li>
 <li
   onClick={() => navigate("/sign-in")}
