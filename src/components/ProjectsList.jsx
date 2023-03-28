@@ -73,7 +73,7 @@ function ProjectsList() {
       description: "",
       tasks: [],
     });
-    await setDoc(doc(db,"projects",newProject.name), {
+    await setDoc(doc(db,localStorage.getItem('email'),newProject.name), {
       name: newProject.name,
       ID: newProject.id,
       Description: newProject.description

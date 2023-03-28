@@ -29,9 +29,11 @@ export default function SignIn() {
         const userCredential = await signInWithEmailAndPassword(auth,email,password)
         const user = userCredential.user
         console.log(user)
+        localStorage.setItem('email', email);
         navigate('/')
       } catch (error) {
         console.log(error)
+        alert("Email or password invalid")
       }
       
     }

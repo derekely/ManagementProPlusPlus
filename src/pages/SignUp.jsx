@@ -27,6 +27,7 @@ export default function SignUp() {
         const userCredential = await createUserWithEmailAndPassword(auth,email,password)
         const user = userCredential.user
         console.log(user)
+        localStorage.setItem('email', email);
         navigate('/')
       } catch (error) {
         console.log(error)
