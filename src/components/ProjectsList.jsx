@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import projectsData from '../data.json';
 
+
 function ProjectCard(props) {
   const { name, id, description } = props.project;
 
@@ -49,6 +50,7 @@ function ProjectsList() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     
     // Check if ID is a valid number
     if (isNaN(newProject.id)) {
@@ -70,7 +72,6 @@ function ProjectsList() {
       tasks: [],
     });
   };
-  
 
   const handleDelete = (projectToDelete) => {
     const updatedProjects = projects.filter((project) => project !== projectToDelete);
