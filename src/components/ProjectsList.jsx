@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import projectsData from '../data.json';
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 
@@ -80,9 +80,11 @@ function ProjectsList() {
     })
   };
 
-  const handleDelete = (projectToDelete) => {
+  const handleDelete = async (projectToDelete) => {
     const updatedProjects = projects.filter((project) => project !== projectToDelete);
     setProjects(updatedProjects);
+    console.log(projectToDelete);
+    await deleteDoc(doc(db,localStorage.getItem('email'),projectToDelete.name));
   };
 
   return (
