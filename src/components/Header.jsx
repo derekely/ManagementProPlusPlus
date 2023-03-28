@@ -25,10 +25,10 @@ export default function Header() {
             <div>
                 <ul className='flex space-x-10'>
                 <li
-  onClick={() => navigate("/")}
-  className={`cursor-pointer py-3 text-sm font-semibold  border-b-[3px] ${pathMatchRoute("/")}`}
+  onClick={() => navigate("/Project")}
+  className={`cursor-pointer py-3 text-sm font-semibold  border-b-[3px] ${pathMatchRoute("/Project")}`}
 >
-  Home
+  Projects
 </li>
 <li
   onClick={() => navigate("/tasks")}

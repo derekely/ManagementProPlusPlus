@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import projectsData from '../data.json';
-import { doc, setDoc, deleteDoc } from "firebase/firestore";
+import { doc, setDoc, deleteDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
 
 
 function ProjectCard(props) {
@@ -43,6 +45,10 @@ function ProjectsList() {
   const [projects, setProjects] = useState(projectsData.projects);
   const [newProject, setNewProject] = useState({ name: '', id: '', description:"", tasks: [] });
 
+  const query = collection(db, localStorage.getItem('email'));
+  const [docs,loading,error] = useCollectionData(query);
+
+
   const handleInputChange = (event) => {
     setNewProject({
       ...newProject,
@@ -75,15 +81,15 @@ function ProjectsList() {
     });
     await setDoc(doc(db,localStorage.getItem('email'),newProject.name), {
       name: newProject.name,
-      ID: newProject.id,
-      Description: newProject.description
+      id: newProject.id,
+      description: newProject.description,
+      tasks: newProject.tasks,
     })
   };
 
   const handleDelete = async (projectToDelete) => {
     const updatedProjects = projects.filter((project) => project !== projectToDelete);
     setProjects(updatedProjects);
-    console.log(projectToDelete);
     await deleteDoc(doc(db,localStorage.getItem('email'),projectToDelete.name));
   };
 
@@ -135,9 +141,9 @@ function ProjectsList() {
         >
           Add Project
         </button>
-        
+      {loading && "Loading..."}  
       </form>
-      {projects.map((project) => (
+      {docs?.map((project) => (
         <ProjectCard key={project.id} project={project} description={project.description} onDelete={handleDelete} />
       ))}
     </div>

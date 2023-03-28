@@ -30,7 +30,7 @@ export default function SignIn() {
         const user = userCredential.user
         console.log(user)
         localStorage.setItem('email', email);
-        navigate('/')
+        navigate('/Project')
       } catch (error) {
         console.log(error)
         alert("Email or password invalid")

@@ -1,7 +1,7 @@
 import React from 'react';
 import ProjectsList from '../components/ProjectsList';
 
-function Home() {
+function Project() {
   return (
     <div className='flex justify-center mt-6'>
       <div className='w-3/4'>
@@ -12,4 +12,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Project;
