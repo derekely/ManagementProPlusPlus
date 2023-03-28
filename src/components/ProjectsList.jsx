@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import projectsData from '../data.json';
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 
 function ProjectCard(props) {
@@ -48,7 +50,7 @@ function ProjectsList() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     
@@ -71,6 +73,11 @@ function ProjectsList() {
       description: "",
       tasks: [],
     });
+    await setDoc(doc(db,"projects",newProject.name), {
+      name: newProject.name,
+      ID: newProject.id,
+      Description: newProject.description
+    })
   };
 
   const handleDelete = (projectToDelete) => {
