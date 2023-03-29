@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import TaskList from "../components/TaskList";
 import "./Tasks.css";
+import { arrayUnion, doc, updateDoc} from "firebase/firestore";
+import { db } from "../firebase";
 
 function Task() {
   const [tasks, setTasks] = useState([
@@ -8,29 +10,37 @@ function Task() {
     { id: 2, name: "Creating a website", status: "working" },
     { id: 3, name: "Call my boss", status: "done" },
   ]);
+  const projectRef = doc(db,localStorage.getItem('email'), localStorage.getItem('project'));
 
-  const handleAddTask = (taskName) => {
+  const handleAddTask = async (taskName) => {
     const newTask = {
       id: tasks.length + 1,
       name: taskName,
       status: "new",
     };
     setTasks([...tasks, newTask]);
+    await updateDoc(projectRef, {
+      tasks: arrayUnion({
+        name: taskName,
+        status: "new",
+      })
+    })   
   };
 
-  const handleMoveTask = (taskId, newStatus) => {
+  const handleMoveTask = (taskName, newStatus) => {
     const updatedTasks = tasks.map((task) => {
-      if (task.id === taskId) {
+      if (task.name === taskName) {
         return { ...task, status: newStatus };
       } else {
         return task;
       }
     });
     setTasks(updatedTasks);
+    console.log(taskName);
   };
 
   const handleDragStart = (event, task) => {
-    event.dataTransfer.setData("text/plain", task.id);
+    event.dataTransfer.setData("text/plain", task.name);
     event.dataTransfer.dropEffect = "move";
   };
 
@@ -40,8 +50,8 @@ function Task() {
   };
 
   const handleDrop = (event, newStatus) => {
-    const taskId = parseInt(event.dataTransfer.getData("text/plain"));
-    handleMoveTask(taskId, newStatus);
+    const taskName = event.dataTransfer.getData("text/plain");
+    handleMoveTask(taskName, newStatus); 
   };
 
   const newTasks = tasks.filter((task) => task.status === "new");

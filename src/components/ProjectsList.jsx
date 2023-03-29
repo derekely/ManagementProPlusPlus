@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import projectsData from '../data.json';
+import { useNavigate } from 'react-router-dom';
 import { doc, setDoc, deleteDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -8,14 +9,20 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 function ProjectCard(props) {
   const { name, id, description } = props.project;
+  const navigate = useNavigate();
 
   const handleDelete = () => {
     props.onDelete(props.project);
   };
 
+  const handleProjectClick = () => {
+    navigate('/Tasks');
+    localStorage.setItem('project', props.project.name);
+  }
+
   return (
     <div className="project-card relative flex justify-between items-end">
-      <button class="hover:text-blue-700 font-bold py-2 px-4 rounded">{name}</button>
+      <button className="hover:text-blue-700 font-bold py-2 px-4 rounded" onClick={handleProjectClick}>{name}</button>
       <p className="absolute bottom-0 right-5">ID: {id}</p>
       <p className="absolute bottom-0 left-20">{description}</p>
       <button className="self-start" onClick={handleDelete}>
