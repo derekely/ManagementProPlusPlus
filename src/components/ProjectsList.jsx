@@ -15,7 +15,7 @@ function ProjectCard(props) {
     props.onDelete(props.project);
   };
 
-  const handleProjectClick = () => {
+  const handleProjectClick = async () => {
     navigate('/Tasks');
     localStorage.setItem('project', props.project.name);
   }
@@ -57,7 +57,6 @@ function ProjectsList() {
   const query = collection(db, localStorage.getItem('email'));
   const [docs,loading,error] = useCollectionData(query);
 
-
   const handleInputChange = (event) => {
     setNewProject({
       ...newProject,
@@ -92,14 +91,15 @@ function ProjectsList() {
       name: newProject.name,
       id: newProject.id,
       description: newProject.description,
-      tasks: newProject.tasks,
     })
   };
 
   const handleDelete = async (projectToDelete) => {
     const updatedProjects = projects.filter((project) => project !== projectToDelete);
     setProjects(updatedProjects);
-    await deleteDoc(doc(db,localStorage.getItem('email'),projectToDelete.name));
+    await deleteDoc(doc(db,localStorage.getItem('email'),projectToDelete.name),{
+
+    });
   };
 
   return (

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import TaskList from "../components/TaskList";
 import "./Tasks.css";
-import { arrayUnion, doc, updateDoc} from "firebase/firestore";
+import { arrayUnion, doc, updateDoc, collection, setDoc} from "firebase/firestore";
 import { db } from "../firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
 
 function Task() {
   const [tasks, setTasks] = useState([
@@ -11,6 +13,9 @@ function Task() {
     { id: 3, name: "Call my boss", status: "done" },
   ]);
   const projectRef = doc(db,localStorage.getItem('email'), localStorage.getItem('project'));
+  const path = `/${localStorage.getItem('email')}/${localStorage.getItem('project')}/tasks`
+  const query = collection(db, path);
+  const [docs,loading,error] = useCollectionData(query);
 
   const handleAddTask = async (taskName) => {
     const newTask = {
@@ -24,7 +29,11 @@ function Task() {
         name: taskName,
         status: "new",
       })
-    })   
+    })  
+    await setDoc(doc(db,path,taskName), {
+      name: taskName,
+      status: "new",
+    })
   };
 
   const handleMoveTask = (taskName, newStatus) => {
@@ -36,7 +45,6 @@ function Task() {
       }
     });
     setTasks(updatedTasks);
-    console.log(taskName);
   };
 
   const handleDragStart = (event, task) => {
