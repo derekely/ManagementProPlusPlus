@@ -13,6 +13,7 @@ function ProjectCard(props) {
     props.onDelete(props.project);
   };
 
+  // Adding a new card
   return (
     <div className="project-card relative flex justify-between items-end">
       <button class="hover:text-blue-700 font-bold py-2 px-4 rounded">{name}</button>
@@ -41,6 +42,7 @@ function ProjectCard(props) {
 
 }
 
+// List of projects
 function ProjectsList() {
   const [projects, setProjects] = useState(projectsData.projects);
   const [newProject, setNewProject] = useState({ name: '', id: '', description:"", tasks: [] });
@@ -146,6 +148,9 @@ function ProjectsList() {
       {docs?.map((project) => (
         <ProjectCard key={project.id} project={project} description={project.description} onDelete={handleDelete} />
       ))}
+      <div class="absolute bottom-0 right-0 h-16 w-16 ...">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">+</button>
+      </div>
     </div>
   );
 }
