@@ -1,6 +1,9 @@
 import React from 'react';
 import { useLocation, useNavigate} from 'react-router-dom';
+import { getAuth, signOut } from 'firebase/auth';
+
 export default function Header() {
+    const auth = getAuth()
     const location = useLocation();
     const navigate = useNavigate();
     function pathMatchRoute(route) {
@@ -22,10 +25,10 @@ export default function Header() {
             <div>
                 <ul className='flex space-x-10'>
                 <li
-  onClick={() => navigate("/")}
-  className={`cursor-pointer py-3 text-sm font-semibold  border-b-[3px] ${pathMatchRoute("/")}`}
+  onClick={() => navigate("/Project")}
+  className={`cursor-pointer py-3 text-sm font-semibold  border-b-[3px] ${pathMatchRoute("/Project")}`}
 >
-  Home
+  Projects
 </li>
 <li
   onClick={() => navigate("/tasks")}
@@ -39,7 +42,14 @@ export default function Header() {
 >
   Sign In
 </li>
-
+<li
+  onClick={() => {navigate("/sign-in")
+  signOut(auth)
+  }}
+  className={`cursor-pointer py-3 text-sm font-semibold  border-b-[3px] ${pathMatchRoute("/sign-out")}`}
+>
+  Sign Out
+</li>
 
                 </ul>
             </div>

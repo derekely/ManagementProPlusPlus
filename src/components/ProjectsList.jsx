@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import projectsData from '../data.json';
+import { useNavigate } from 'react-router-dom';
+import { doc, setDoc, deleteDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
+
 
 function ProjectCard(props) {
   const { name, id, description } = props.project;
+  const navigate = useNavigate();
 
   const handleDelete = () => {
     props.onDelete(props.project);
   };
 
+  const handleProjectClick = () => {
+    navigate('/Tasks');
+    localStorage.setItem('project', props.project.name);
+  }
+
+  // Adding a new card
   return (
     <div className="project-card relative flex justify-between items-end">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{name}</button>
+      <button className="hover:text-blue-700 font-bold py-2 px-4 rounded" onClick={handleProjectClick}>{name}</button>
       <p className="absolute bottom-0 right-5">ID: {id}</p>
       <p className="absolute bottom-0 left-20">{description}</p>
       <button className="self-start" onClick={handleDelete}>
@@ -36,9 +49,14 @@ function ProjectCard(props) {
 
 }
 
+// List of projects
 function ProjectsList() {
   const [projects, setProjects] = useState(projectsData.projects);
   const [newProject, setNewProject] = useState({ name: '', id: '', description:"", tasks: [] });
+
+  const query = collection(db, localStorage.getItem('email'));
+  const [docs,loading,error] = useCollectionData(query);
+
 
   const handleInputChange = (event) => {
     setNewProject({
@@ -47,8 +65,9 @@ function ProjectsList() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
     
     // Check if ID is a valid number
     if (isNaN(newProject.id)) {
@@ -69,12 +88,18 @@ function ProjectsList() {
       description: "",
       tasks: [],
     });
+    await setDoc(doc(db,localStorage.getItem('email'),newProject.name), {
+      name: newProject.name,
+      id: newProject.id,
+      description: newProject.description,
+      tasks: newProject.tasks,
+    })
   };
-  
 
-  const handleDelete = (projectToDelete) => {
+  const handleDelete = async (projectToDelete) => {
     const updatedProjects = projects.filter((project) => project !== projectToDelete);
     setProjects(updatedProjects);
+    await deleteDoc(doc(db,localStorage.getItem('email'),projectToDelete.name));
   };
 
   return (
@@ -125,11 +150,14 @@ function ProjectsList() {
         >
           Add Project
         </button>
-        
+      {loading && "Loading..."}  
       </form>
-      {projects.map((project) => (
+      {docs?.map((project) => (
         <ProjectCard key={project.id} project={project} description={project.description} onDelete={handleDelete} />
       ))}
+      <div class="absolute bottom-0 right-0 h-16 w-16 ...">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">+</button>
+      </div>
     </div>
   );
 }
