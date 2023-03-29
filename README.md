@@ -1,10 +1,8 @@
 # Overview
 
-{Important!  Do not say in this section that this is college assignment.}
+"Projector" is a powerful web application built using React JS and Firebase as the backend. This application is designed to simplify project management for individuals and teams. With "Projector," you can easily keep track of your group projects and the tasks for each project. The app allows you to create and manage multiple projects, assign tasks to team members, set due dates, and track progress.
 
-{Provide a description of your team project.  Describe how to use the software.}
-
-{If this is an online class, then provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running and a walkthrough of the code.}
+"Projector" offers a sleek and intuitive user interface, making it easy for you to stay organized and up-to-date with your project's progress. With real-time updates and notifications, you can easily monitor the status of each task and collaborate with your team members.
 
 [Software Demo Video](http://youtube.link.goes.here)
 
