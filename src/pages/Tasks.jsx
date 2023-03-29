@@ -12,7 +12,6 @@ function Task() {
     { id: 2, name: "Creating a website", status: "working" },
     { id: 3, name: "Call my boss", status: "done" },
   ]);
-  const projectRef = doc(db,localStorage.getItem('email'), localStorage.getItem('project'));
   const path = `/${localStorage.getItem('email')}/${localStorage.getItem('project')}/tasks`
   const query = collection(db, path);
   const [docs,loading,error] = useCollectionData(query);
@@ -24,19 +23,14 @@ function Task() {
       status: "new",
     };
     setTasks([...tasks, newTask]);
-    await updateDoc(projectRef, {
-      tasks: arrayUnion({
-        name: taskName,
-        status: "new",
-      })
-    })  
     await setDoc(doc(db,path,taskName), {
       name: taskName,
       status: "new",
     })
   };
 
-  const handleMoveTask = (taskName, newStatus) => {
+  const handleMoveTask = async (taskName, newStatus) => {
+    const taskRef = doc(db, `${path}/${taskName}`);
     const updatedTasks = tasks.map((task) => {
       if (task.name === taskName) {
         return { ...task, status: newStatus };
@@ -45,6 +39,9 @@ function Task() {
       }
     });
     setTasks(updatedTasks);
+    await updateDoc(taskRef, {
+      "status": newStatus,
+  });
   };
 
   const handleDragStart = (event, task) => {
@@ -66,17 +63,25 @@ function Task() {
   const workingTasks = tasks.filter((task) => task.status === "working");
   const doneTasks = tasks.filter((task) => task.status === "done");
 
+  // const newTasks = docs?.filter((task) => task.status === "new");
+  // const workingTasks = docs?.filter((task) => task.status === "working");
+  // const doneTasks = docs?.filter((task) => task.status === "done");
+ 
+  
+
   return (
     <div>
       <div className="task-lists">
+        {loading && "Loading..."} 
         <TaskList
           title="New"
           tasks={newTasks}
           onAddTask={handleAddTask}
-          onDragStart={handleDragStart}
+          onDragStart={handleDragStart} 
           onDragOver={handleDragOver}
           onDrop={(event) => handleDrop(event, "new")}
         />
+        {loading && "Loading..."} 
         <TaskList
           title="Working"
           tasks={workingTasks}
@@ -84,6 +89,7 @@ function Task() {
           onDragOver={handleDragOver}
           onDrop={(event) => handleDrop(event, "working")}
         />
+        {loading && "Loading..."} 
         <TaskList
           title="Done"
           tasks={doneTasks}
