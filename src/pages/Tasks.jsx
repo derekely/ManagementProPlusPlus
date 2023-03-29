@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TaskList from "../components/TaskList";
 import "./Tasks.css";
-import { arrayUnion, doc, updateDoc, collection, setDoc} from "firebase/firestore";
+import { doc, updateDoc, collection, setDoc} from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
@@ -12,7 +12,7 @@ function Task() {
     { id: 2, name: "Creating a website", status: "working" },
     { id: 3, name: "Call my boss", status: "done" },
   ]);
-  const path = `/${localStorage.getItem('email')}/${localStorage.getItem('project')}/tasks`
+  const path = `${localStorage.getItem('email')}/${localStorage.getItem('project')}/tasks`
   const query = collection(db, path);
   const [docs,loading,error] = useCollectionData(query);
 
@@ -38,7 +38,7 @@ function Task() {
         return task;
       }
     });
-    setTasks(updatedTasks);
+    setTasks(updatedTasks);  
     await updateDoc(taskRef, {
       "status": newStatus,
   });
@@ -59,20 +59,19 @@ function Task() {
     handleMoveTask(taskName, newStatus); 
   };
 
-  const newTasks = tasks.filter((task) => task.status === "new");
-  const workingTasks = tasks.filter((task) => task.status === "working");
-  const doneTasks = tasks.filter((task) => task.status === "done");
+  // const newTasks = tasks.filter((task) => task.status === "new");
+  // const workingTasks = tasks.filter((task) => task.status === "working");
+  // const doneTasks = tasks.filter((task) => task.status === "done");
 
-  // const newTasks = docs?.filter((task) => task.status === "new");
-  // const workingTasks = docs?.filter((task) => task.status === "working");
-  // const doneTasks = docs?.filter((task) => task.status === "done");
- 
+  const newTasks = docs?.filter((task) => task.status === "new");
+  const workingTasks = docs?.filter((task) => task.status === "working");
+  const doneTasks = docs?.filter((task) => task.status === "done");
   
 
   return (
     <div>
+      {loading && "Loading..."} 
       <div className="task-lists">
-        {loading && "Loading..."} 
         <TaskList
           title="New"
           tasks={newTasks}
@@ -81,7 +80,6 @@ function Task() {
           onDragOver={handleDragOver}
           onDrop={(event) => handleDrop(event, "new")}
         />
-        {loading && "Loading..."} 
         <TaskList
           title="Working"
           tasks={workingTasks}
@@ -89,7 +87,6 @@ function Task() {
           onDragOver={handleDragOver}
           onDrop={(event) => handleDrop(event, "working")}
         />
-        {loading && "Loading..."} 
         <TaskList
           title="Done"
           tasks={doneTasks}

@@ -19,7 +19,7 @@ function TaskList({
     <div className="task-list">
       <h2>{title}</h2>
       <ul onDragOver={onDragOver} onDrop={onDrop}>
-        {tasks.map((task) => (
+        {tasks?.map((task) => (
           <li
             key={task.id}
             draggable="true"

@@ -56,6 +56,7 @@ function ProjectsList() {
 
   const query = collection(db, localStorage.getItem('email'));
   const [docs,loading,error] = useCollectionData(query);
+  console.log(docs);
 
   const handleInputChange = (event) => {
     setNewProject({
