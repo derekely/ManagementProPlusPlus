@@ -4,7 +4,7 @@
 
 "Projector" offers a sleek and intuitive user interface, making it easy for you to stay organized and up-to-date with your project's progress. With real-time updates and notifications, you can easily monitor the status of each task and collaborate with your team members.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://www.youtube.com/watch?v=CeQ9ItxjCmk)
 
 # Development Environment
 * Node.js
